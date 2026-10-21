@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),
+    path('whatsapp/', include('core.urls')), # تأكد أن اسم تطبيقك هو core أو استبدله بالاسم الصحيح
 ]
