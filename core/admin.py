@@ -1,20 +1,18 @@
 from django.contrib import admin
-from .models import Subscriber, Job, PaymentRequest
-
-@admin.register(Subscriber)
-class SubscriberAdmin(admin.ModelAdmin):
-    list_display = ('phone_number', 'full_name', 'specialty', 'is_active', 'subscription_end_date', 'bot_state')
-    list_filter = ('is_active', 'bot_state')
-    search_fields = ('phone_number', 'full_name', 'specialty')
+from .models import Job, UserSession, Application
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'source', 'created_at', 'is_active')
-    list_filter = ('category', 'source', 'is_active')
-    search_fields = ('title', 'description', 'category')
+    list_display = ('title', 'category', 'is_active', 'created_at')
+    list_filter = ('is_active', 'category')
+    search_fields = ('title', 'description')
 
-@admin.register(PaymentRequest)
-class PaymentRequestAdmin(admin.ModelAdmin):
-    list_display = ('subscriber', 'receipt_code', 'amount', 'status', 'created_at')
-    list_filter = ('status',)
-    search_fields = ('subscriber__phone_number', 'receipt_code')
+@admin.register(UserSession)
+class UserSessionAdmin(admin.ModelAdmin):
+    list_display = ('phone_number', 'state', 'selected_job', 'updated_at')
+    search_fields = ('phone_number', 'applicant_name')
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ('applicant_name', 'job', 'phone_number', 'applied_at')
+    search_fields = ('applicant_name', 'phone_number')
