@@ -1,6 +1,7 @@
 import os
 import django
 
+# تأكد أن الكلمة هي config وليس job_platform
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
